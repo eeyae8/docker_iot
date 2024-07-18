@@ -22,13 +22,21 @@ services:
       - "grafana-data:/var/lib/grafana"
   
   node-red:
-    image: nodered/node-red
+    image: nodered/node-red:4.0.2-debian
     container_name: node-red
     ports:
       - "1880:1880"
+    depends_on:
+      - influxdb
+      - mosquitto
     volumes:
-      - "node-red-data:/data"
-  
+      - "./node-red/data:/data"
+    networks:
+      - common_network
+    environment: 
+      - TZ=UTC+1
+    restart: unless-stopped
+
   mosquitto:
     image: eclipse-mosquitto
     container_name: mosquitto
@@ -37,6 +45,12 @@ services:
       - "9001:9001"
     volumes:
       - "mosquitto-data:/mosquitto"
+
+
+networks:
+  common_network:
+    name: docker-influxdb-grafana-nodered-mqtt_common_network
+
 
 volumes:
   influxdb-data:
