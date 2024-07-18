@@ -1,14 +1,21 @@
 version: "3"
 services: 
   influxdb:
-    image: influxdb
+    image: influxdb:2.7.6
     container_name: influxdb
+    build:
+      context: .
+      dockerfile: "influxdb/Dockerfile"
+    networks:
+      - common_network
     ports:
-      - "8086:8086"        
+      - "8086:8086"
     env_file:
       - 'influxdb.env'
     volumes:
       - "influxdb-data:/var/lib/influxdb"
+      - shared-data:/shared
+    restart: unless-stopped
 
   grafana:
     image: grafana/grafana
@@ -68,5 +75,6 @@ volumes:
   grafana-data:        
   node-red-data:
   mosquitto-data:
+  shared-data:
 
 
