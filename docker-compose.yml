@@ -20,13 +20,15 @@ services:
   grafana:
     image: grafana/grafana
     container_name: grafana
+    networks:
+      - common_network
     ports:
       - "3000:3000"
     env_file:
       - 'grafana.env'
-    user: "0"
     volumes:
       - "grafana-data:/var/lib/grafana"
+    restart: unless-stopped
   
   node-red:
     image: nodered/node-red:4.0.2-debian
