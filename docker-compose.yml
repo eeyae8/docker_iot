@@ -39,12 +39,23 @@ services:
 
   mosquitto:
     image: eclipse-mosquitto
+    build:
+      context: .
+      dockerfile: "mosquitto/Dockerfile"
     container_name: mosquitto
+    networks:
+      - common_network
     ports:
       - "1883:1883"
       - "9001:9001"
     volumes:
       - "mosquitto-data:/mosquitto"
+      - ./mosquitto/config:/mosquitto/config:rw
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    env_file:
+      - "mosquitto.env"
+    restart: unless-stopped
 
 
 networks:
