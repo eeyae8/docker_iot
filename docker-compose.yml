@@ -33,6 +33,9 @@ services:
   node-red:
     image: nodered/node-red:4.0.2-debian
     container_name: node-red
+    build:
+      context: .
+      dockerfile: "node-red/Dockerfile"
     ports:
       - "1880:1880"
     depends_on:
