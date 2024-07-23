@@ -14,6 +14,7 @@ services:
       - 'influxdb.env'
     volumes:
       - "influxdb-data:/var/lib/influxdb"
+      - "./influxdb/config:/etc/influxdb"
       - shared-data:/shared
     restart: unless-stopped
 
