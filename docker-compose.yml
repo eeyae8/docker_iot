@@ -3,18 +3,21 @@ services:
   influxdb:
     image: influxdb:2.7.6
     container_name: influxdb
-    build:
-      context: .
-      dockerfile: "influxdb/Dockerfile"
     networks:
       - common_network
     ports:
       - "8086:8086"
-    env_file:
-      - 'influxdb.env'
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=eeyae8@nottingham.ac.uk
+      - DOCKER_INFLUXDB_INIT_PASSWORD=fortknox123
+      - DOCKER_INFLUXDB_INIT_ORG=IoT Project
+      - DOCKER_INFLUXDB_INIT_BUCKET=IoT
+      - DOCKER_INFLUXDB_INIT_RETENTION=0
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=Pmouy_Yw9IIwIM7UpQc_rd0o2STHzjgqZTMm-yQMBcJxrBWWONfMrvoY0gurSOcAbAtLAeIQl0zSJyc-VRqrzQ==
+      - DOCKER_INFLUXDB_INIT_RETENTION=0
     volumes:
-      - "influxdb-data:/var/lib/influxdb"
-      - "./influxdb/config:/etc/influxdb"
+      - influxdb-data:/var/lib/influxdb2
       - shared-data:/shared
     restart: unless-stopped
 
