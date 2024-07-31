@@ -223,6 +223,3 @@ InfluxDB is configured to:
 3. **Data Storage**: Node-RED writes the processed data to InfluxDB
 4. **Visualization**: Grafana queries data from InfluxDB and displays it in dashboards
 
-This setup allows for real-time data flow from IoT devices all the way to visualizations, with flexibility for data processing and storage along the way.
-
-[Remaining sections (Troubleshooting, Contributing, License) stay the same]
