@@ -54,6 +54,8 @@
             }
           },
           "mappings": [],
+          "max": 5000,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -63,10 +65,11 @@
               },
               {
                 "color": "red",
-                "value": 80
+                "value": 4000
               }
             ]
-          }
+          },
+          "unit": "mm"
         },
         "overrides": []
       },
@@ -90,11 +93,11 @@
       "targets": [
         {
           "datasource": "InfluxDB",
-          "query": "from(bucket: \"IoT\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Flow\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> aggregateWindow(every: 2s, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "query": "from(bucket: \"IoT\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Rainfall\")\n  |> filter(fn: (r) => r[\"_field\"] == \"Rainfall\")\n  |> aggregateWindow(every: 2s, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
         }
       ],
-      "title": "Flow Data",
+      "title": "Rainfall",
       "type": "timeseries"
     },
     {
@@ -102,11 +105,37 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 70,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
-          "max": 45,
-          "min": 10,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -140,16 +169,39 @@
       },
       "id": 3,
       "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
+        "calculate": false,
+        "calculation": {},
+        "cellGap": 1,
+        "cellValues": {},
+        "color": {
+          "exponent": 0.5,
+          "fill": "dark-orange",
+          "mode": "scheme",
+          "reverse": false,
+          "scale": "exponential",
+          "scheme": "RdYlBu",
+          "steps": 64
         },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "exemplars": {
+          "color": "rgba(255,0,255,0.7)"
+        },
+        "filterValues": {
+          "le": 1e-9
+        },
+        "legend": {
+          "show": true
+        },
+        "rowsFrame": {
+          "layout": "auto"
+        },
+        "tooltip": {
+          "show": true,
+          "yHistogram": false
+        },
+        "yAxis": {
+          "axisPlacement": "left",
+          "reverse": false
+        }
       },
       "pluginVersion": "8.0.6",
       "targets": [
@@ -160,7 +212,7 @@
         }
       ],
       "title": "Temperature",
-      "type": "gauge"
+      "type": "heatmap"
     },
     {
       "datasource": "InfluxDB",
@@ -201,9 +253,9 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 0
+        "y": 9
       },
-      "id": 3,
+      "id": 4,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
