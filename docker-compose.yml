@@ -26,7 +26,8 @@ services:
     volumes:
       - grafana-data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
-      - ./grafana/dashboards:/etc/grafana/dashboards
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+      - ./grafana/dashboard-watcher.sh:/dashboard-watcher.sh
     restart: unless-stopped
   
   node-red:
@@ -76,7 +77,7 @@ networks:
 
 volumes:
   influxdb-data:
-  grafana-data:        
+  grafana-data:      
   node-red-data:
   mosquitto-data:
   shared-data:
