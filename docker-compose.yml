@@ -87,6 +87,34 @@ services:
       - emqx.env
     restart: unless-stopped
 
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    networks:
+      - common_network
+    ports:
+      - "3306:3306"
+    env_file:
+      - mysql.env
+    volumes:
+      - mysql-data:/var/lib/mysql
+    restart: unless-stopped
+
+  portainer:
+    image: portainer/portainer-ce
+    container_name: portainer
+    networks:
+      - common_network
+    ports:
+      - "8000:8000"
+      - "9000:9000"
+    env_file:
+      - portainer.env
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer-data:/data
+    restart: unless-stopped
+
 networks:
   common_network:
     name: docker-influxdb-grafana-nodered-mqtt_common_network
@@ -99,3 +127,5 @@ volumes:
   shared-data:
   emqx-data:
   emqx-log:
+  mysql-data:
+  portainer-data:
