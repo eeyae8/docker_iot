@@ -2,6 +2,8 @@
 
 This project sets up a comprehensive IoT monitoring system using Docker, combining InfluxDB for data storage, Grafana for visualization, Node-RED for data processing and automation, and Mosquitto as an MQTT broker.
 
+SEE To-Do.md for tasks to do.
+
 ## Table of Contents
 1. [Components](#components)
 2. [Key Features](#key-features)

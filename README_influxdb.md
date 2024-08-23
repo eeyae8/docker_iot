@@ -33,7 +33,7 @@ Environment variables are stored in the `influxdb.env` file. Here's a breakdown 
 5. `DOCKER_INFLUXDB_INIT_BUCKET=IoT`
    - This creates an initial bucket named 'IoT' for storing data.
 
-6. `DOCKER_INFLUXDB_INIT_ADMIN_TOKEN
+6. `DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=`
    - This sets the admin token for API access. Taken from my actual influxdb account. All access and infinite retention.
 
 7. `DOCKER_INFLUXDB_INIT_RETENTION=0`

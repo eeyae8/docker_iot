@@ -21,6 +21,10 @@ The custom Dockerfile for Node-RED does the following:
 5. Installs npm packages defined in package.json (if it exists).
 6. Copies settings.js, flows.json, and flows_cred.json from the host to the container.
 7. Sets the final working directory to /usr/src/node-red.
+8. Instructions have been included on mkcert HOWEVER IT IS REQUIRED TO DISCONNECT THE CLOUDFLARE TUNNEL FROM THE DOMAIN FIRST. 
+
+## IMPORTANT NOTES
+I have acquired the domain sltdash.live under name.com using the Github student pack. Its free for one year starting August 2024. Cloudflare is industry standard and self-renews certificates however it does involve depending on a third party. Mkcert is made by a google engineer and is therefore reliable but requires certificate regeneration every 2 years starting August 2024 for the current ones. Choice is yours to make. 
 
 ## Volumes
 - `"./node-red/data:/data"`: Maps the local `./node-red/data` directory to `/data` in the container. This is where Node-RED stores its flows, credentials, and settings.
@@ -195,6 +199,7 @@ The configuration is set up to work seamlessly with Cloudflare Tunnel:
 - Listens on all interfaces (0.0.0.0)
 - Trusts the proxy (Cloudflare Tunnel)
 - HTTPS is not required as it's handled by Cloudflare Tunnel
+- access the instance at nodered.sltdash.live 
 
 ## Customization
 To add custom nodes or further modify the Node-RED configuration, you can edit the `settings.js` file in the `./node-red/data` directory.
