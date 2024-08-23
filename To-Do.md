@@ -8,4 +8,4 @@
 
 4. MQTT communication and securing it. See Cloudflare's TLS approach (perhaps can use tunnels or https technology for mqtt?).
 
-5. Initialise mySQL, Portainer instances.
+5. Improve portainer and mysql. Basic initialisation done. 
