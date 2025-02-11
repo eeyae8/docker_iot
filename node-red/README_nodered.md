@@ -24,7 +24,9 @@ The custom Dockerfile for Node-RED does the following:
 8. Instructions have been included on mkcert HOWEVER IT IS REQUIRED TO DISCONNECT THE CLOUDFLARE TUNNEL FROM THE DOMAIN FIRST. 
 
 ## IMPORTANT NOTES
-I have acquired the domain sltdash.live under name.com using the Github student pack. Its free for one year starting August 2024. Cloudflare is industry standard and self-renews certificates however it does involve depending on a third party. Mkcert is made by a google engineer and is therefore reliable but requires certificate regeneration every 2 years starting August 2024 for the current ones. Choice is yours to make. 
+I have acquired the domain sltdash.live under name.com using the Github student pack. Its free for one year starting August 2024. Cloudflare is industry standard and self-renews certificates however it does involve depending on a third party. As both of these are under my university student account, I have pulled them from use after the completion of my internship. However, both of these can be configured the same way using the aformentioned websites. Cloudflare (at least in 2024/25) allows for creation of tunnels free of charge but scaling upwards would require the paid plan. Since its trusted it is worth it to encourage consumer trust. 
+
+Mkcert is made by a google engineer and is therefore reliable but requires certificate regeneration every 2 years starting August 2024 for the current ones. The choice is yours to make. 
 
 ## Volumes
 - `"./node-red/data:/data"`: Maps the local `./node-red/data` directory to `/data` in the container. This is where Node-RED stores its flows, credentials, and settings.
