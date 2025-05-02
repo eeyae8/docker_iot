@@ -4,6 +4,8 @@ This project sets up a comprehensive IoT monitoring system using Docker, combini
 
 SEE To-Do.md for tasks to do.
 
+Please note all log in details have been erased in the environment files.
+
 ## Table of Contents
 1. [Components](#components)
 2. [Key Features](#key-features)
